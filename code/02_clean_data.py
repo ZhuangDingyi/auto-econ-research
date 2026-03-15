@@ -198,7 +198,7 @@ assert df["min_wage"].between(7.00, 20.00).all(), "FAIL: Min wage out of range"
 print("   ✓ All minimum wages in $7–$20 range")
 
 # Check 3: Panel is nearly balanced
-expected = df["state"].nunique() * 24
+expected = df["state"].nunique() * 28
 actual = len(df)
 print(f"   ✓ Panel observations: {actual} (expected ~{expected})")
 

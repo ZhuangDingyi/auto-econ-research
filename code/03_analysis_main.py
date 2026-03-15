@@ -224,8 +224,8 @@ def callaway_santanna(df, outcome="ln_emp", unit="state", time_var="time",
                 "se_gt": max(se_gt, 1e-8),
                 "n_treat": n_g,
                 "n_ctrl": n_c,
-                "g_year":  int(g // 4) + 2018,
-                "g_quarter": int(g % 4) + 1,
+                "g_year":  int((g - 1) // 4) + 2018,
+                "g_quarter": int((g - 1) % 4) + 1,
             })
 
     return pd.DataFrame(att_records)
@@ -586,8 +586,8 @@ print(f"   Saved: {FIG_DIR / 'fig1_event_study.pdf'}")
 
 print("\n[6] ATT heterogeneity by calendar year post-treatment...")
 
-df_att_gt["treat_year"] = df_att_gt["g"].apply(lambda g: int(g // 4) + 2018)
-df_att_gt["cal_year"]   = df_att_gt["t"].apply(lambda t: int(t // 4) + 2018)
+df_att_gt["treat_year"] = df_att_gt["g"].apply(lambda g: int((g - 1) // 4) + 2018)
+df_att_gt["cal_year"]   = df_att_gt["t"].apply(lambda t: int((t - 1) // 4) + 2018)
 
 # ATT by post period year
 post_by_year = df_att_gt[df_att_gt["event_time"] >= 0].groupby("cal_year").agg(

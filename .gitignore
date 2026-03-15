@@ -13,3 +13,13 @@ data/raw/*.csv
 !data/cleaned/summary_stats.csv
 *.egg-info/
 .ipynb_checkpoints/
+
+# Privacy: paper drafts stay local only
+paper/*.tex
+paper/*.bib
+paper/*.md
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+# No personal URLs in public repo

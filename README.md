@@ -1,7 +1,6 @@
 # Minimum Wage Effects on Leisure & Hospitality Employment
 ## Staggered Difference-in-Differences, 2018–2024
 
-[![Paper](https://img.shields.io/badge/Paper-Overleaf-green)](https://www.overleaf.com/project/69b72cf024085ffafe0ba18d)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **Dingyi Zhuang** · MIT JTL Urban Mobility Lab · March 2026
@@ -36,8 +35,8 @@ All data are from publicly available sources. **Raw data is NOT included** (re-d
 | State Minimum Wage History | U.S. DOL Wage & Hour Division | [DOL WHD](https://www.dol.gov/agencies/whd/state/minimum-wage/history) |
 | State Unemployment Rates | BLS Local Area Unemployment Statistics (LAUS) | [BLS LAUS](https://www.bls.gov/lau/) |
 
-**Panel summary:** 47 states × 28 quarters (2018Q1–2024Q4) = 1,316 state-quarter obs.  
-21 never-treated states (federal floor $7.25); 26 ever-treated states across 9 treatment cohorts.
+**Panel summary:** 51 states/DC × 28 quarters (2018Q1–2024Q4) = 1,428 state-quarter obs.  
+21 never-treated states (federal floor $7.25); 30 ever-treated states across 9 treatment cohorts.
 
 ---
 
@@ -108,8 +107,6 @@ auto-econ-research/
 │       ├── event_study_att.csv
 │       └── treatment_timing.csv
 ├── paper/
-│   ├── main.tex               # LaTeX paper (compile on Overleaf or local pdflatex)
-│   ├── references.bib         # BibTeX references
 │   └── figures/               # Generated figures (PDF + PNG)
 │       ├── fig1_pretrends_timing.pdf
 │       └── fig2_event_study_robustness.pdf
@@ -120,21 +117,6 @@ auto-econ-research/
 
 ---
 
-## Compile the Paper
-
-The paper is on Overleaf: https://www.overleaf.com/project/69b72cf024085ffafe0ba18d
-
-To compile locally:
-
-```bash
-cd paper/
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
-```
-
----
 
 ## Citation
 
