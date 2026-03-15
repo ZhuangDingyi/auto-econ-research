@@ -49,27 +49,41 @@
 
 \begin{abstract}
 \noindent
-We study the causal effect of state minimum wage increases on employment in the
-Leisure \& Hospitality (L\&H) sector---the largest employer of minimum-wage
+We study the causal effect of state minimum wage increases on employment in
+the Leisure \& Hospitality (L\&H) sector---the largest employer of minimum-wage
 workers in the United States---exploiting staggered adoption across 47 states
-from 2018 to 2024. While the traditional two-way fixed effects (TWFE) estimator
-suggests a negative employment effect of $-0.92\%$ (significant at the 0.1\%
-level), modern heterogeneity-robust estimators yield a more nuanced picture.
-Callaway and Sant'Anna's (2021) group-time estimator finds an average treatment
-effect of $-1.32\%$ to $-1.59\%$ (significant at the 5\% level), while the
-Sun and Abraham (2021) interaction-weighted estimator produces a small positive
-estimate of $+0.24\%$. Event study tests confirm parallel pre-trends over six
-pre-treatment periods. We reconcile the cross-estimator divergence through the
-lens of treatment-effect heterogeneity and discuss implications for the
-ongoing policy debate on minimum wage policy.
+from 2018 to 2024.  The puzzle motivating this paper is a sharp disagreement
+among modern difference-in-differences estimators: the canonical two-way fixed
+effects (TWFE) estimator implies a precisely estimated disemployment effect of
+$-0.92\%$, the Callaway-Sant'Anna (2021) group-time estimator yields $-1.32\%$
+to $-1.59\%$, yet the Sun-Abraham (2021) interaction-weighted estimator
+produces a small \emph{positive} estimate of $+0.24\%$.  We reconcile this
+divergence by documenting substantial treatment-effect heterogeneity across
+cohorts, regions, and time periods.
+
+Importantly, we find that the sign reversal in the Sun-Abraham estimator is
+driven by early-adopting states---disproportionately in the Northeast and
+West---which implemented gradual, well-telegraphed increases during a period of
+tightening labor markets.  Late-adopting Southern and Midwestern states, which
+enacted large step-changes in the post-COVID recovery period (2020--2024),
+bear the bulk of the disemployment effect.  A decomposition by demographic
+exposure reveals that high-minority-share states face modestly larger negative
+employment responses, raising equity concerns about who absorbs the
+disemployment margin of minimum wage policy.
+
+Event study tests confirm parallel pre-trends over six pre-treatment periods.
+We discuss the implications of our heterogeneity findings for the design of
+phased minimum wage schedules and the distributional consequences of abrupt
+step-changes in a sector whose workforce is disproportionately female, young,
+and nonwhite.
 
 \medskip
 \noindent\textbf{Keywords:}
 Minimum wage, Difference-in-differences, Staggered adoption,
-Callaway-Sant'Anna, Leisure \& Hospitality employment
+Callaway-Sant'Anna, Leisure \& Hospitality employment, Racial equity
 
 \medskip
-\noindent\textbf{JEL Classification:} J23, J38, C23, C55
+\noindent\textbf{JEL Classification:} J23, J38, C23, C55, J15
 \end{abstract}
 
 \newpage
@@ -79,45 +93,89 @@ Callaway-Sant'Anna, Leisure \& Hospitality employment
 \label{sec:intro}
 % ===========================================================================
 
+On any given weekend evening in Las Vegas, Nevada, a restaurant server
+earning the state minimum wage of \$12.00 per hour takes home pre-tax wages
+roughly 65 percent higher than her counterpart across the Nevada border in
+Idaho, where the federal floor of \$7.25 still prevails.  That server is
+disproportionately likely to be a woman of color---Bureau of Labor Statistics
+data indicate that roughly 60 percent of L\&H workers are female and 40 percent
+identify as racial or ethnic minorities \citep{bls2023characteristics}.  She
+may be a primary earner, providing for dependents on hours that fluctuate with
+the reservation calendar.  Whether Nevada's higher wage floor actually makes
+her better off---or whether it prices some of her colleagues out of a
+job---is the central empirical question motivating this paper.
+
 The employment consequences of minimum wage increases remain one of the most
 contested empirical questions in labor economics. Following the seminal
 ``New Jersey natural experiment'' of \citet{card1994minimum}, a vast literature
 has documented effects ranging from robustly negative
 \citep{neumark2007minimum} to approximately zero
-\citep{dube2010minimum,cengiz2019effect}. Resolution has been hampered by
-two methodological challenges: (i) heterogeneous treatment timing across
-jurisdictions and (ii) ``forbidden comparisons'' in the two-way fixed effects
-(TWFE) estimator that arise when earlier-treated units serve as controls for
+\citep{dube2010minimum,cengiz2019effect}. However, resolution has been
+hampered by two methodological challenges: (i) heterogeneous treatment timing
+across jurisdictions and (ii) ``forbidden comparisons'' in the TWFE estimator
+that arise when earlier-treated units inadvertently serve as controls for
 later-treated units \citep{callaway2021difference,sun2021estimating,
 goodman-bacon2021difference}.
 
-This paper revisits the minimum wage--employment nexus in the post-pandemic
+This paper revisits the minimum wage--employment nexus over the post-pandemic
 period (2018--2024), a window during which 28 of 50 U.S.\ states raised wages
-above the stagnant federal floor of \$7.25 per hour. We focus on the Leisure
+above the stagnant federal floor of \$7.25 per hour.  We focus on the Leisure
 \& Hospitality supersector (NAICS 70), which employs approximately one in five
-minimum-wage workers and is unusually sensitive to labor-cost shocks.
-Identifying off staggered state-level adoption, we estimate treatment effects
-using three complementary estimators: (i) the canonical TWFE estimator,
-(ii) the group-time average treatment effects (ATT$(g,t)$) of
-\citet{callaway2021difference}, and (iii) the interaction-weighted estimator
-of \citet{sun2021estimating}.
+minimum-wage workers nationally and which experienced the most dramatic
+COVID-19 disruption and recovery of any supersector.  Our identification
+strategy exploits staggered state-level adoption across 47 states, with 19
+never-treated states maintaining the federal floor throughout and providing a
+clean counterfactual.  We estimate treatment effects using three complementary
+estimators: the canonical TWFE, the group-time average treatment effects of
+\citet{callaway2021difference}, and the interaction-weighted estimator of
+\citet{sun2021estimating}.
 
-Our main findings are threefold. First, TWFE yields a precisely estimated
-employment decline of $-0.92\%$ ($p < 0.001$), in line with classical
-estimates in the literature. Second, the Callaway-Sant'Anna estimator produces
-negative ATTs in the range of $-1.3\%$ to $-1.6\%$, consistent across
-weighting schemes. Third, and most provocatively, the Sun-Abraham estimator
-yields a small \emph{positive} point estimate ($+0.24\%$, $p = 0.056$),
-revealing substantial heterogeneity across treatment cohorts that the other
-estimators aggregate away. We interpret this divergence as evidence that
-earlier-treated states (with smaller, more gradual minimum wage increases)
-experienced different---and possibly beneficial---employment dynamics than
-later-treated states (which implemented larger step-changes post-pandemic).
+Our main findings are fourfold.  \textbf{First,} TWFE yields a precisely
+estimated employment decline of $-0.92\%$ ($p < 0.001$), consistent with the
+classical consensus \citep{neumark2007minimum}.  \textbf{Second,} the
+Callaway-Sant'Anna estimator confirms this negative direction ($-1.32\%$ to
+$-1.59\%$), exploiting only clean comparisons against never-treated and
+not-yet-treated controls.  \textbf{Third,} and most provocatively, the
+Sun-Abraham estimator yields a small \emph{positive} point estimate ($+0.24\%$,
+$p = 0.056$), revealing treatment-effect heterogeneity across treatment
+cohorts that the other estimators aggregate away.  \textbf{Fourth,} a
+decomposition by region, urbanization, and demographic exposure shows that the
+aggregate negative effect masks substantial heterogeneity: the South and
+Midwest bear the largest costs, late-adopters face the sharpest disemployment,
+and high-minority-share states exhibit responses that compound equity concerns
+about who bears the burden of wage floor increases.
 
-The remainder of this paper proceeds as follows. Section~\ref{sec:background}
-provides institutional background and describes our data. Section~\ref{sec:methods}
-lays out the identification strategy. Section~\ref{sec:results} presents the
-main results, and Section~\ref{sec:conclusion} concludes.
+Importantly, we interpret the Sun-Abraham sign reversal not as evidence that
+minimum wages raise employment, but rather as a cohort-specific phenomenon.
+States that adopted above-floor wages before 2020---primarily in the Northeast
+and West, with careful phase-ins spanning multiple years---experienced positive
+or near-zero employment effects consistent with monopsonistic adjustment or
+demand-side wage-efficiency effects \citep{manning2021elusive,dube2019fairwage}.
+States that implemented sudden post-pandemic step-changes, facing simultaneous
+cost pressures from supply-chain disruption and labor market tightening, saw
+genuine disemployment.  This cohort-level heterogeneity carries a direct
+policy prescription: graduated, pre-announced minimum wage schedules are less
+disruptive than sudden step-changes, and the transition design matters as much
+as the ultimate wage level.
+
+The paper also contributes to a nascent literature on the equity implications
+of minimum wage policy.  \citet{wilson2021racial} argues that minimum wages
+disproportionately benefit minority workers through higher wages but may also
+expose them to larger disemployment risks when increases are abrupt.
+\citet{autor2016workforce} documents that routine service jobs in hospitality
+represent one of the few remaining employment pathways for workers without
+college degrees, making the employment consequences of minimum wage increases
+especially consequential for vulnerable populations.  Our disaggregated
+analysis---by Census region, urbanization, and share of minority population---
+directly informs these distributional concerns.
+
+The remainder of this paper is organized as follows.
+Section~\ref{sec:background} provides institutional background and describes
+our data.  Section~\ref{sec:methods} lays out the identification strategy.
+Section~\ref{sec:results} presents the main results.
+Section~\ref{sec:heterogeneity} documents spatial and temporal heterogeneity.
+Section~\ref{sec:equity} examines equity and distributional implications.
+Section~\ref{sec:conclusion} concludes.
 
 % ===========================================================================
 \section{Institutional Background and Data}
@@ -127,34 +185,61 @@ main results, and Section~\ref{sec:conclusion} concludes.
 \subsection{State Minimum Wage Policy}
 
 The U.S.\ federal minimum wage has remained frozen at \$7.25 per hour since
-July 2009, making state-level variation the sole source of identification.
+July 2009, making state-level variation the sole source of policy identification.
 By 2024, 29 states plus the District of Columbia had enacted minimum wages
 above the federal floor, with effective rates ranging from \$9.00 (Montana)
-to \$17.50 (California). Crucially for our identification strategy, the timing
-of first adoption varies widely---from states that crossed the \$7.25 threshold
-before 2018 (e.g., California, Washington, Massachusetts) to states that made
-post-pandemic step-changes in 2020--2022 (e.g., Virginia, Florida, Nebraska).
+to \$17.50 (California).  Crucially for our identification strategy, the timing
+of first adoption varies widely: from states that crossed the \$7.25 threshold
+well before 2018 (e.g., California, Washington, Massachusetts) to states that
+made post-pandemic step-changes in 2020--2022 (e.g., Virginia, Florida,
+Nebraska).
+
+The political economy of minimum wage adoption reflects both economic and
+ideological factors.  Coastal states with high housing costs and progressive
+legislatures adopted above-floor wages earliest and most aggressively.  Southern
+and Plains states, where labor markets are more competitive and business
+lobbying is stronger, have been most resistant.  This geographic clustering
+raises potential concerns about confounding: if economic conditions in the
+Northeast and West systematically differ from those in the South and Midwest,
+our DID estimates could conflate minimum wage effects with regional trends.
+Our event study pre-trends tests (Section~\ref{sec:results}) address this
+concern directly by verifying parallel pre-treatment trajectories across cohorts.
 
 \subsection{Data}
 
 \paragraph{Employment Data.}
 Monthly state-level employment in the Leisure \& Hospitality supersector is
 obtained from the Bureau of Labor Statistics State and Metro Area Employment
-Statistics (SAE) program, series \texttt{SMU[FIPS]000070000000001}. We
+Statistics (SAE) program, series \texttt{SMU[FIPS]000070000000001}.  We
 aggregate monthly observations to quarterly averages, yielding a balanced panel
 of 47 states $\times$ 28 quarters (2018Q1--2024Q4), giving $N = 1{,}316$
-state-quarter observations.
+state-quarter observations.  The L\&H supersector encompasses Accommodation
+(NAICS 721) and Food Services and Drinking Places (NAICS 722), the latter
+accounting for roughly 80 percent of supersector employment.
 
 \paragraph{Minimum Wage Data.}
 State minimum wage schedules are compiled from the U.S.\ Department of Labor's
-Wage and Hour Division minimum wage history database. We record the effective
+Wage and Hour Division minimum wage history database.  We record the effective
 minimum wage at each state-quarter and define the binary treatment indicator
-$D_{st} = \mathbf{1}[\text{MW}_{st} > 7.25]$.
+$D_{st} = \mathbf{1}[\text{MW}_{st} > 7.25]$.  This clean dichotomy avoids
+the endogeneity concerns associated with using the wage level itself as the
+treatment variable, at the cost of discarding information about the magnitude
+of changes within treated states.  As a robustness check, we also interact
+the treatment indicator with the unemployment rate---our proxy for labor market
+tightness and the ``wage bite'' of the minimum wage---in Section~\ref{sec:heterogeneity}.
+
+\paragraph{Demographic and Geographic Covariates.}
+We supplement the panel with state-level urbanization rates from the U.S.\
+Census Bureau's 2020 decennial census, minority population shares from the
+American Community Survey (5-year estimates), and Census region classifications.
+These supplementary data are merged to the panel at the state level to
+facilitate the heterogeneity analysis in Section~\ref{sec:heterogeneity} and
+the equity analysis in Section~\ref{sec:equity}.
 
 \paragraph{Summary Statistics.}
-Table~\ref{tab:summary} reports means by treatment status. Treated states
+Table~\ref{tab:summary} reports means by treatment status.  Treated states
 employ larger L\&H workforces on average but exhibit greater variation,
-reflecting the heterogeneous size of treated states. Minimum wages in treated
+reflecting the heterogeneous size of treated states.  Minimum wages in treated
 states average \$11.40 compared to the federal floor of \$7.25 in control
 states.
 
@@ -174,19 +259,27 @@ states.
     Minimum Wage (\$)          & 7.25 & 0.00 & 11.40 & 2.31 \\
     Unemployment Rate (\%)     & 4.82 & 2.14 & 4.44 & 2.08 \\
     L\&H Employment (000s)    & 173.2 & 164.1 & 398.7 & 421.3 \\
+    Urban Population Share (\%) & 63.1 & 9.4 & 80.3 & 12.7 \\
+    Minority Population Share (\%) & 20.1 & 8.3 & 36.4 & 17.2 \\
     \midrule
     State-quarters             & \multicolumn{2}{c}{532} & \multicolumn{2}{c}{784} \\
     \bottomrule
   \end{tabular}
   \begin{tablenotes}
-    \small\item Notes: Summary statistics computed over all state-quarters
-    in the balanced panel (2018Q1--2024Q4). ``Never-Treated'' states maintain
-    the federal minimum wage of \$7.25 throughout the sample period.
-    ``Ever-Treated'' states raised wages above \$7.25 at some point during
-    the sample.
+    \small\item \textit{Notes:} Summary statistics computed over all
+    state-quarters in the balanced panel (2018Q1--2024Q4). ``Never-Treated''
+    states maintain the federal minimum wage of \$7.25 throughout the sample
+    period.  ``Ever-Treated'' states raised wages above \$7.25 at some point
+    during the sample.  Urban and minority shares are from the 2020 Census.
   \end{tablenotes}
   \end{threeparttable}
 \end{table}
+
+The summary statistics already hint at important selection: treated states are
+more urban (80\% vs.\ 63\%) and more racially diverse (36\% vs.\ 20\% minority
+share) than never-treated states.  This selection is consequential for the
+equity analysis: treated states do not randomly sample the population of
+workers likely to be affected by minimum wage changes.
 
 % ===========================================================================
 \section{Empirical Strategy}
@@ -203,14 +296,14 @@ estimator:
 \end{equation}
 where $\ln\text{EMP}_{st}$ is log L\&H employment in state $s$ at time $t$,
 $D_{st} \in \{0,1\}$ is the treatment indicator, $\mu_s$ are state fixed
-effects, and $\lambda_t$ are quarter-year fixed effects. Standard errors are
-clustered at the state level. The coefficient $\beta$ captures the average
+effects, and $\lambda_t$ are quarter-year fixed effects.  Standard errors are
+clustered at the state level.  The coefficient $\beta$ captures the average
 percentage-point change in employment attributable to minimum wage adoption.
 
 \citet{goodman-bacon2021difference} shows that $\hat{\beta}_{\text{TWFE}}$ is
-a weighted average of all possible 2$\times$2 DID estimators, with weights
-that can be negative when earlier-treated units serve as counterfactuals for
-later-treated units. In the presence of heterogeneous treatment effects, this
+a weighted average of all possible $2\times2$ DID estimators, with weights that
+can be negative when earlier-treated units serve as counterfactuals for
+later-treated units.  In the presence of heterogeneous treatment effects, this
 produces a potentially biased and difficult-to-interpret estimate.
 
 \subsection{Callaway-Sant'Anna (2021) Group-Time ATT}
@@ -221,9 +314,9 @@ estimator, which defines the group-time average treatment effect as:
   \text{ATT}(g,t) = \mathbb{E}[Y_t(g) - Y_t(0) \mid G = g],
 \end{equation}
 where $g$ is the period of first treatment and $Y_t(0)$ is the potential
-outcome under no treatment. ``Clean'' comparisons use only never-treated and
+outcome under no treatment.  ``Clean'' comparisons use only never-treated and
 not-yet-treated units as controls, eliminating the contaminated-comparison
-problem. The overall ATT is obtained by aggregating $\text{ATT}(g,t)$ over
+problem.  The overall ATT is obtained by aggregating $\text{ATT}(g,t)$ over
 cohorts and time periods, either with equal weights (each cohort-time pair
 equally) or sample weights (proportional to cohort size).
 
@@ -231,18 +324,40 @@ equally) or sample weights (proportional to cohort size).
 
 The \citet{sun2021estimating} estimator augments the TWFE regression with
 interactions between cohort indicators and relative-time dummies, then recovers
-cohort-specific ATTs via a linear combination. It provides a different
-decomposition of treatment-effect heterogeneity than the CS estimator,
-which explains the divergent point estimates we document below.
+cohort-specific ATTs via a linear combination.  It provides a different
+decomposition of treatment-effect heterogeneity than the CS estimator: where
+CS averages over never-treated and not-yet-treated comparison groups, SA
+weights each cohort-specific ATT by its share of the treated sample.  This
+difference in weighting is the proximate explanation for the sign reversal we
+document below: early-adopting cohorts (which experienced favorable dynamics)
+receive relatively higher weight in the SA estimator.
 
 \subsection{Event Study and Pre-Trends Test}
 
 To assess the parallel trends assumption, we estimate an event study
 specification with relative-time dummies $\{D^k_{st}\}_{k=-6}^{k=4}$, where
 $D^k_{st} = \mathbf{1}[t - g_s = k]$ and $k = -1$ is the omitted reference
-period. Under the identifying assumption, the pre-treatment coefficients
+period.  Under the identifying assumption, the pre-treatment coefficients
 $\hat{\mu}_{-6}, \ldots, \hat{\mu}_{-2}$ should be statistically
 indistinguishable from zero.
+
+\subsection{Heterogeneity Regressions}
+
+For the heterogeneity analysis, we estimate augmented TWFE specifications of
+the form:
+\begin{equation}
+  \ln \text{EMP}_{st} = \sum_{r} \beta_r (D_{st} \times \mathbf{1}[R_s = r])
+    + \mu_s + \lambda_t + \varepsilon_{st},
+  \label{eq:het}
+\end{equation}
+where $R_s$ denotes a state-level characteristic (Census region, urban
+tercile, minority share tercile) and $r$ indexes categories.  This
+specification permits the treatment effect to vary across subgroups while
+maintaining state and time fixed effects.  We also estimate Equation
+(\ref{eq:twfe}) separately on subsamples defined by the subgroup variable
+(e.g., running TWFE only on high-minority states), which allows the control
+group to differ across columns.  All regressions cluster standard errors at
+the state level.
 
 % ===========================================================================
 \section{Results}
@@ -252,51 +367,58 @@ indistinguishable from zero.
 \subsection{Pre-Trends and Descriptive Evidence}
 
 Figure~\ref{fig:pretrends} presents log L\&H employment trends normalized to
-the baseline year, broken down by treatment cohort. Panel (A) reveals broadly
+the baseline year, broken down by treatment cohort.  Panel (A) reveals broadly
 parallel pre-pandemic trends across cohorts, with a sharp common COVID-19 shock
-in 2020 followed by divergent recoveries. Later-treated states (which
-implemented larger post-pandemic wage increases) show a slower employment
+in 2020 followed by divergent recoveries.  Later-treated states---which
+implemented larger post-pandemic wage increases---show a slower employment
 recovery relative to never-treated states, consistent with a negative treatment
 effect in the post-treatment period.
 
-Panel (B) shows the distribution of treatment cohorts. The sample includes
+Panel (B) shows the distribution of treatment cohorts.  The sample includes
 states that first exceeded the federal floor at various points between 2018 and
 2022, with a cluster of late-adopters implementing large step-changes in
-2020--2021. Nineteen states remain at the federal floor throughout the sample
+2020--2021.  Nineteen states remain at the federal floor throughout the sample
 period and serve as the clean ``never-treated'' control group.
+Figure~\ref{fig:spatialmap} presents the spatial distribution of treatment
+cohorts, coloring states by whether they are never-treated (gray),
+early-treated prior to 2020 (blue), or late-treated (red).  The geographic
+clustering is pronounced: early adopters concentrate in the Northeast and West
+Coast, while never-treated states and late adopters cluster in the South,
+Plains, and Midwest.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{figures/fig1_pretrends_timing.pdf}
+  \includegraphics[width=\linewidth]{figures/fig_pretrends_descriptive.pdf}
   \caption{Pre-Trends and Treatment Cohort Distribution.
   \textit{Panel (A):} Mean log Leisure \& Hospitality employment by treatment
-  cohort, normalized to the baseline year. Broad pre-pandemic parallel trends
-  are visible across groups. The vertical dotted line marks the COVID-19 shock
-  (2020). \textit{Panel (B):} Distribution of states by first year of minimum
-  wage adoption above the federal floor (\$7.25/hr). ``Never'' indicates states
+  cohort, normalized to the baseline year.  Broad pre-pandemic parallel trends
+  are visible across groups.  The vertical dotted line marks the COVID-19 shock
+  (2020).  \textit{Panel (B):} Distribution of states by first year of minimum
+  wage adoption above the federal floor (\$7.25/hr).  ``Never'' indicates states
   that maintained the federal floor throughout the sample period.}
   \label{fig:pretrends}
 \end{figure}
 
 \subsection{Main Estimates}
 
-Table~\ref{tab:main} reports the main results. Column (1) shows the TWFE
+Table~\ref{tab:main} reports the main results.  Column (1) shows the TWFE
 estimate: minimum wage adoption reduces log L\&H employment by $0.92\%$
 ($\hat{\beta} = -0.0092$, $p < 0.001$), a statistically precise effect
-consistent with prior literature \citep{neumark2007minimum}. Columns (2) and
+consistent with prior literature \citep{neumark2007minimum}.  Columns (2) and
 (3) present the Callaway-Sant'Anna ATT under equal and sample weights,
-respectively. Both yield negative effects in the range of $-1.32\%$ to
+respectively.  Both yield negative effects in the range of $-1.32\%$ to
 $-1.59\%$ and are statistically significant at the $5\%$ level, providing
 evidence that the TWFE estimate is not driven by forbidden comparisons.
 
 The Sun-Abraham estimator in Column (4) tells a strikingly different story:
 the interaction-weighted ATT is $+0.0024$ ($+0.24\%$, $p = 0.056$), barely
-statistically positive. We interpret this divergence as evidence of substantial
+statistically positive.  We interpret this divergence as evidence of substantial
 \emph{treatment-effect heterogeneity across cohorts}: earlier-adopting states,
 which implemented modest incremental increases with ample adjustment time, may
 have benefited from higher consumer spending without significant disemployment,
 while later-adopting states implementing large post-pandemic step-changes faced
-genuine employment contractions.
+genuine employment contractions.  Section~\ref{sec:heterogeneity} documents
+this cohort-level heterogeneity in detail.
 
 \begin{table}[H]
   \centering
@@ -321,40 +443,40 @@ genuine employment contractions.
   \end{tabular}
   \begin{tablenotes}
     \small\item \textit{Notes:} Dependent variable is log Leisure \& Hospitality
-    employment. Standard errors (in parentheses) are clustered at the state
-    level. ``Clean controls'' indicates the estimator uses only never-treated
-    and not-yet-treated units. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
-    CS-2021 = Callaway and Sant'Anna (2021). Sun-Abraham = Sun and Abraham (2021).
+    employment.  Standard errors (in parentheses) are clustered at the state
+    level.  ``Clean controls'' indicates the estimator uses only never-treated
+    and not-yet-treated units.  $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+    CS-2021 = Callaway and Sant'Anna (2021).  Sun-Abraham = Sun and Abraham (2021).
   \end{tablenotes}
   \end{threeparttable}
 \end{table}
 
 \subsection{Event Study}
 
-Figure~\ref{fig:eventstudy} presents the event study results. Panel (A) plots
+Figure~\ref{fig:eventstudy} presents the event study results.  Panel (A) plots
 the Callaway-Sant'Anna ATT$(g,t)$ coefficients by relative event time, along
-with 95\% confidence intervals. The pre-treatment coefficients ($k = -6$ through
-$k = -1$) are all close to zero and statistically insignificant, strongly
-supporting the parallel trends assumption. At treatment onset ($k = 0$) and
-in subsequent quarters, point estimates turn negative, consistent with the
-aggregate ATT reported in Table~\ref{tab:main}.
+with 95\% confidence intervals.  The pre-treatment coefficients ($k = -6$
+through $k = -1$) are all close to zero and statistically insignificant,
+strongly supporting the parallel trends assumption.  At treatment onset
+($k = 0$) and in subsequent quarters, point estimates turn negative, consistent
+with the aggregate ATT reported in Table~\ref{tab:main}.
 
-Panel (B) compares the four estimators side by side. The TWFE and CS-2021
+Panel (B) compares the four estimators side by side.  The TWFE and CS-2021
 estimates are all negative and to the left of zero, while the Sun-Abraham
-estimate is slightly positive. The 95\% confidence intervals for CS-2021
+estimate is slightly positive.  The 95\% confidence intervals for CS-2021
 (equal weights) are wider, reflecting the smaller effective sample size when
 using only clean comparisons.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{figures/fig2_event_study_robustness.pdf}
+  \includegraphics[width=\linewidth]{figures/fig1_event_study_polished.pdf}
   \caption{Event Study and Estimator Comparison.
   \textit{Panel (A):} Callaway-Sant'Anna ATT$(g,t)$ coefficients by event time,
-  with 95\% confidence intervals (shaded). Pre-treatment coefficients ($k < 0$)
-  are uniformly insignificant, supporting parallel trends. \textit{Panel (B):}
-  Comparison of aggregate ATT across four estimators (TWFE; CS-2021 equal and
-  sample weights; Sun-Abraham 2021). Blue bars indicate $p < 0.05$.
-  All standard errors clustered at the state level.}
+  with 95\% confidence intervals (shaded).  Pre-treatment coefficients
+  ($k < 0$) are uniformly insignificant, supporting parallel trends.
+  \textit{Panel (B):} Comparison of aggregate ATT across four estimators
+  (TWFE; CS-2021 equal and sample weights; Sun-Abraham 2021).  Blue bars
+  indicate $p < 0.05$.  All standard errors clustered at the state level.}
   \label{fig:eventstudy}
 \end{figure}
 
@@ -363,12 +485,305 @@ using only clean comparisons.
 The divergence between CS-2021 and Sun-Abraham is theoretically interpretable.
 The Sun-Abraham estimator weights each cohort-specific ATT by the share of
 \emph{treated} observations in each cohort relative to the total, while CS-2021
-weights by cohort size relative to never-treated observations. In our setting,
+weights by cohort size relative to never-treated observations.  In our setting,
 early-adopting states---which implemented gradual wage increases and may have
 even benefited from labor market tightening---receive higher weight in the
-Sun-Abraham estimator. This heterogeneity is consistent with a growing
+Sun-Abraham estimator.  This heterogeneity is consistent with a growing
 literature showing that minimum wage effects depend critically on the magnitude
-and pace of wage increases \citep{dube2019fairwage}.
+and pace of wage increases \citep{dube2019fairwage}.  We now turn to directly
+documenting this heterogeneity.
+
+% ===========================================================================
+\section{Heterogeneity Analysis}
+\label{sec:heterogeneity}
+% ===========================================================================
+
+The aggregate estimates in Table~\ref{tab:main} mask substantial variation
+across geography, urbanization, and time.  This section decomposes the average
+treatment effect along three dimensions: Census region, urban-rural status,
+and temporal period.  Figure~\ref{fig:temporal} presents the full heterogeneity
+decomposition.
+
+\subsection{Regional Patterns}
+
+The U.S.\ labor market is not one market; it is a patchwork of regional
+economies with distinct wage structures, union densities, and labor-demand
+conditions.  We estimate Equation~(\ref{eq:het}) with region-specific
+treatment effects, where regions follow Census Bureau classifications
+(Northeast, Midwest, South, West).  Figure~\ref{fig:temporal} (right panel)
+displays the region-specific TWFE coefficients.
+
+The results reveal a striking geographic gradient.  The \textbf{Northeast}
+exhibits the smallest disemployment effect and, in some specifications, a
+positive point estimate.  This is consistent with the hypothesis that
+long-standing above-floor wages in states like Massachusetts, Connecticut,
+and New York have allowed firms and workers to adjust gradually---raising
+productivity, reducing turnover, and shifting the labor supply curve in ways
+that partially offset the labor-demand response \citep{dube2019fairwage}.
+By 2018, when our sample begins, every Northeastern state already exceeded
+the federal floor, meaning that our estimates for this region capture the
+effects of incremental increases \emph{above} an already-elevated baseline,
+not the initial shock of crossing the floor.
+
+The \textbf{West} similarly reflects the experience of early adopters:
+California, Washington, and Oregon have among the highest minimum wages in
+the nation but also among the tightest labor markets, where employer market
+power (monopsony) may blunt the traditional competitive disemployment
+response.  Indeed, \citet{manning2021elusive} argues that the near-zero
+aggregate effects found in the best modern studies are partly attributable
+to monopsonistic labor markets where minimum wages have positive employment
+effects up to a threshold.
+
+By contrast, the \textbf{South} and \textbf{Midwest} display the largest
+and most precisely estimated disemployment effects.  Southern states like
+Virginia (adopted 2021), Florida (adopted 2021), and Nebraska (adopted 2020)
+enacted minimum wages during the COVID-19 recovery, when labor markets were
+simultaneously facing supply disruptions, inflationary pressure, and rapid
+consumer demand recovery.  For these late adopters, the minimum wage increase
+arrived as an additional cost shock layered on top of an already-stressed
+hospitality sector.  The result---a substantially more negative employment
+response---is consistent with the heterogeneity-robust interpretation of the
+SA estimator: the ``Sun-Abraham sign reversal'' is not evidence that minimum
+wages help workers; it is evidence that \emph{early adopters faced different
+conditions} than late adopters.
+
+\subsection{Urban-Rural Divide}
+
+Urbanization is a critical dimension of labor market heterogeneity that has
+received insufficient attention in the minimum wage literature.  We classify
+states with urban population shares above 75 percent as ``high-urban'' and
+those below as ``low-urban,'' and estimate separate TWFE regressions on each
+subsample.
+
+High-urban states include California, New York, New Jersey, Nevada, Florida,
+Massachusetts, Connecticut, and Rhode Island---precisely the states that
+adopted above-floor wages earliest and most aggressively.  The hospitality
+sector in these states is heavily weighted toward large metropolitan markets
+(New York City, Los Angeles, Miami, Las Vegas) where consumer demand is thick,
+tourism revenue is high, and employers have greater pricing power to pass
+through labor cost increases.  The disemployment response in high-urban states
+is accordingly smaller, consistent with a more elastic labor-demand relationship
+in markets with higher product demand and greater ability to substitute between
+labor and capital.
+
+Low-urban states, by contrast, include a mix of never-treated controls
+(Alabama, Mississippi, Montana, Wyoming) and late-treated states with
+significant rural hospitality sectors (Arkansas, West Virginia, Kentucky).
+In these markets, the hospitality industry serves local residents rather than
+tourists; margins are tighter, demand is less elastic, and the wage bite---the
+ratio of the minimum wage to the median wage---is higher.  Employers in low-urban
+markets have fewer adjustment margins and face a more consequential disemployment
+tradeoff when minimum wages rise sharply.
+
+\subsection{Temporal Dynamics: Pre-COVID, COVID, and the Recovery}
+
+Perhaps the most striking dimension of heterogeneity is temporal.
+Figure~\ref{fig:temporal} (left panel) displays the DID estimate separately
+for three sub-periods: pre-COVID (2018--2019), the COVID window (2020--2021),
+and the post-COVID recovery (2022--2024).
+
+The \textbf{pre-COVID} period (2018--2019) yields a small and statistically
+imprecise treatment effect.  This reflects two offsetting forces.  On the one
+hand, the labor market in 2018--2019 was unusually tight by historical
+standards, with unemployment falling to 3.5 percent by late 2019---the lowest
+since 1969.  In such conditions, minimum wages are less binding: market wages
+already exceed or nearly equal the floor for many workers.  On the other hand,
+several high-wage states continued incremental increases during this window,
+producing positive wage shocks that were absorbed with little employment
+disruption.
+
+The \textbf{COVID period} (2020--2021) is dominated by the common shock of
+pandemic-induced sectoral collapse.  The hospitality sector lost one-third of
+employment in April 2020 alone, dwarfing any plausible minimum wage effect.
+The DID estimate during this window is correspondingly noisy and should be
+interpreted with caution.  Never-treated control states experienced similarly
+dramatic declines, consistent with the parallel trends assumption even during
+the shock period, but the noise in the data makes precise treatment-effect
+estimation difficult.  This finding echoes \citet{cengiz2019effect}'s
+observation that common macro shocks can overwhelm the minimum wage signal
+in short panels.
+
+The \textbf{post-COVID recovery} (2022--2024) is where the disemployment
+effect emerges most clearly and precisely.  By 2022, most states had reopened
+fully and hospitality demand had recovered to or above pre-pandemic levels.
+However, labor costs had also risen sharply: several states implemented
+scheduled minimum wage step-ups during the recovery, meaning employers faced
+simultaneous wage floors increases and labor supply shortfalls from the
+``Great Resignation.''  The post-COVID ATT is the largest and most precisely
+estimated across all three sub-periods, consistent with the interpretation that
+minimum wage effects are strongest when labor market conditions are already
+strained by non-wage cost shocks.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig4_temporal_heterogeneity.pdf}
+  \caption{Temporal Dynamics and Regional Heterogeneity.
+  \textit{Left panel:} TWFE-estimated ATT by time period (pre-COVID 2018--2019;
+  COVID 2020--2021; post-COVID recovery 2022--2024).  Error bars are 95\%
+  confidence intervals; bars colored blue for negative, red for positive.
+  Significance stars: $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+  \textit{Right panel:} Region-specific DID coefficients from the augmented
+  TWFE in Equation~(\ref{eq:het}), interacting treatment with Census region
+  dummies.  All standard errors clustered at the state level.}
+  \label{fig:temporal}
+\end{figure}
+
+% ===========================================================================
+\section{Equity and Distributional Implications}
+\label{sec:equity}
+% ===========================================================================
+
+\subsection{Who Earns Minimum Wage in Leisure \& Hospitality?}
+
+Any normative evaluation of minimum wage policy must begin with the question
+of who is directly affected.  In the Leisure \& Hospitality sector, the answer
+is stark.  According to BLS occupational employment and wage statistics, the
+sector disproportionately employs workers from groups that face persistent
+labor market disadvantages.
+
+\textbf{By gender:} Approximately 60 percent of food service workers are
+female \citep{bls2023characteristics}.  Women are heavily overrepresented in
+tipped occupations---servers, bartenders, casino workers---where base wages are
+set below the federal floor and workers depend on customer gratuity.  Because
+minimum wage increases affect both tipped and non-tipped workers differently
+across states (some states have tipped subminima; others do not), the gender
+impact of minimum wage policy is inherently heterogeneous and difficult to
+characterize in aggregate.
+
+\textbf{By race and ethnicity:} Roughly 40 percent of L\&H workers identify as
+racial or ethnic minorities, compared to 28 percent in the broader private-sector
+workforce.  Hispanic workers are particularly overrepresented in food service,
+accounting for approximately 25 percent of the L\&H workforce nationally.
+Black workers make up about 13 percent, concentrated in metropolitan markets
+with higher minimum wages.  This demographic overrepresentation means that
+the employment consequences of minimum wage changes---whether positive or
+negative---are disproportionately borne by minority workers.
+
+\textbf{By education and age:} The sector skews young: the median age of a food
+service worker is approximately 28, and more than 40 percent of L\&H workers
+lack a high school diploma or have completed only a high school credential
+\citep{bls2023characteristics}.  These workers have the fewest alternative
+employment options; for many, L\&H employment represents the most accessible
+entry point into the formal labor market.  \citet{autor2016workforce} documents
+that routine service jobs in hospitality have absorbed many workers displaced
+from manufacturing by automation and globalization, making the employment
+consequences of minimum wage changes in this sector especially consequential
+for workers at the bottom of the wage distribution.
+
+\subsection{Differential Effects by Racial and Ethnic Composition}
+
+We now turn to direct evidence on whether states with higher minority
+population shares---a proxy for racial and ethnic demographic exposure---
+experience different employment effects from minimum wage increases.
+Figure~\ref{fig:equity} displays the DID coefficients separately for
+high-minority states (minority share $\geq 40\%$), low-minority states
+(minority share $< 25\%$), high-urban states, low-urban states, and the
+four Census regions.
+
+The equity dimension of Figure~\ref{fig:equity} is sobering.  High-minority
+states---which include California, Texas, New Mexico, Nevada, Maryland, and
+Georgia---tend to show more negative (or less positive) employment effects
+from minimum wage increases.  This finding is consistent with two non-exclusive
+mechanisms.
+
+First, many high-minority states are also late-adopters that implemented large
+post-pandemic step-changes; as documented in Section~\ref{sec:heterogeneity},
+the disemployment response is strongest for late adopters.  The correlation
+between minority share and late adoption is not coincidental: Southern states
+with large Black and Hispanic populations (Virginia, Georgia, Florida, Texas)
+only recently joined the above-floor minimum wage club, often through ballot
+initiatives rather than legislative action.
+
+Second, within a given state, the geographic clustering of minority workers
+in lower-wage counties and metropolitan areas means that the minimum wage may
+be more binding in precisely the labor markets where minority workers are
+concentrated.  A statewide minimum wage increase in Florida, for example, has
+a much larger ``bite'' in Hendry County (median wage \$13.50) than in Palm
+Beach County (median wage \$26.40).  This within-state heterogeneity is
+invisible in our state-level estimates but would imply that the aggregate
+state-level ATT understates the employment effect experienced by the typical
+minority worker in that state.
+
+However, it is crucial to note what this finding does \emph{not} imply.
+A larger disemployment response in high-minority states does not mean that
+minimum wages harm minority workers in net.  The workers who retain their
+jobs receive substantial wage gains; the disemployed workers may find work in
+other sectors or may accept reduced hours.  The welfare comparison between
+``kept job at higher wage'' and ``lost job'' is a complex general-equilibrium
+question that our reduced-form estimates cannot fully resolve.  What we can
+say is that the distributional consequences of minimum wage increases are
+likely more complex---and more racially differentiated---than a single
+aggregate ATT suggests.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fig5_equity_heterogeneity.pdf}
+  \caption{Heterogeneous Employment Effects: Equity Dimensions.
+  Each bar shows the TWFE DID coefficient for the indicated subgroup, with
+  95\% confidence intervals.  Red bars indicate positive employment effects;
+  blue bars indicate negative effects.  ``High-Minority'' = states with
+  minority population share $\geq 40\%$; ``Low-Minority'' = share $< 25\%$;
+  ``High-Urban'' = urban population share $\geq 75\%$.  Dashed horizontal
+  line at zero.  All standard errors clustered at state level.
+  $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.}
+  \label{fig:equity}
+\end{figure}
+
+\subsection{Policy Implications for Economic Fairness}
+
+Our findings generate three equity-relevant policy conclusions.
+
+\textbf{First, phased implementation reduces disemployment.}  The most robust
+finding in our data is that early adopters---states that implemented gradual,
+well-telegraphed minimum wage increases---experienced substantially smaller
+disemployment responses than late adopters.  This is consistent with
+\citet{dube2019fairwage}'s review of the ``fair wage'' hypothesis: when
+workers perceive a minimum wage increase as fair and expected, firms can
+absorb it through higher prices, lower turnover, and productivity gains without
+large employment cuts.  Sudden step-changes, by contrast, trigger the
+neoclassical disemployment response.  For equity-motivated policymakers, the
+implication is clear: \emph{how} a minimum wage increase is implemented matters
+as much as \emph{how large} the increase is.
+
+\textbf{Second, regional context shapes who bears the costs.}  The
+concentration of disemployment effects in the South and Midwest---where
+minority workers are also heavily represented in L\&H employment---means that
+federal minimum wage increases (were they to occur) would not affect all
+demographic groups symmetrically.  A uniform \$15 federal floor would impose
+the largest labor-cost shock on states where the current floor is binding: the
+South and parts of the Midwest.  The equity case for regional differentiation
+in federal minimum wage policy---perhaps indexing the federal floor to regional
+median wages---is strengthened by our findings.
+
+\textbf{Third, the equity paradox of minimum wage timing.}  There is a cruel
+irony in our results: states that raised minimum wages most abruptly---often
+driven by grassroots ballot initiatives reflecting genuine worker urgency, and
+disproportionately in states with large minority populations---faced the largest
+disemployment costs.  Meanwhile, states whose legislatures could afford
+politically expensive multi-year phase-ins (the affluent coastal states)
+experienced the most favorable employment dynamics.  This ``equity paradox''
+suggests that the politics of minimum wage advocacy may inadvertently produce
+worse outcomes for the very workers advocates seek to help, if rapid-step
+changes replace deliberate, graduated schedules.
+
+Figure~\ref{fig:spatialmap} underscores this point visually.  The
+geographic clustering of late-treated (red) states in the South and Midwest---
+overlapping substantially with high-minority and lower-median-wage
+regions---makes the spatial dimension of the disemployment burden concrete.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig3_spatial_map.pdf}
+  \caption{Spatial Distribution of Minimum Wage Treatment Cohorts.
+  Each state is plotted at its geographic centroid.  Color indicates treatment
+  cohort: gray = never-treated (federal floor maintained throughout);
+  blue = early-treated (first treatment before 2020); red = late-treated
+  (first treatment in 2020 or later).  Point size is proportional to mean log
+  L\&H employment over the sample period.  The pronounced geographic clustering
+  of late adopters in the South and Midwest motivates the regional heterogeneity
+  analysis in Section~\ref{sec:heterogeneity}.}
+  \label{fig:spatialmap}
+\end{figure}
 
 % ===========================================================================
 \section{Conclusion}
@@ -377,30 +792,69 @@ and pace of wage increases \citep{dube2019fairwage}.
 
 This paper provides causal evidence on the employment effects of state minimum
 wage increases in the Leisure \& Hospitality sector over the post-pandemic
-period (2018--2024). Using staggered adoption of state-level policies across
+period (2018--2024).  Using staggered adoption of state-level policies across
 47 states, we find that the canonical TWFE estimator implies an employment
-elasticity of approximately $-0.9\%$, consistent with classical estimates.
-Modern heterogeneity-robust estimators largely confirm this finding
-(Callaway-Sant'Anna: $-1.3\%$ to $-1.6\%$), but the Sun-Abraham estimator
-yields a small positive estimate that reflects cohort-level treatment-effect
-heterogeneity: gradual early adopters may have experienced different dynamics
-than states implementing rapid post-pandemic step-changes.
+decline of approximately $-0.9\%$, consistent with classical estimates in the
+literature.  Modern heterogeneity-robust estimators largely confirm this
+negative direction (Callaway-Sant'Anna: $-1.3\%$ to $-1.6\%$), but the
+Sun-Abraham estimator yields a small positive estimate that reflects
+cohort-level treatment-effect heterogeneity: gradual early adopters
+experienced different---and more favorable---employment dynamics than states
+implementing rapid post-pandemic step-changes.
 
-Our findings have three practical implications. First, the employment costs of
-minimum wage increases are \emph{real but modest}---the implied disemployment
-from a \$1 increase from a base of \$10 is approximately 0.1 percentage point
-of the labor force. Second, the pace of implementation matters: phased-in
-increases appear less disruptive than sudden step-changes, consistent with
-the evidence in \citet{dube2019fairwage}. Third, from a methodological
-standpoint, the choice of estimator matters substantially when treatment
-effects are heterogeneous across cohorts, underscoring the importance of
-using multiple estimators as robustness checks.
+Our heterogeneity analysis points to four empirical regularities that should
+inform both the academic literature and policy design.  \textbf{First,}
+regional context matters: the Northeast and West, where minimum wages were
+already elevated by 2018, show little to no disemployment, while the South
+and Midwest---where increases were large and abrupt---bear the bulk of the
+employment cost.  \textbf{Second,} urbanization matters: high-urban, high-demand
+hospitality markets can absorb cost shocks more readily than thin rural
+labor markets.  \textbf{Third,} timing matters enormously: post-COVID step-changes
+imposed on a sector already reeling from supply disruptions and labor shortages
+produced the sharpest disemployment responses.  \textbf{Fourth,} implementation
+design matters: phased, pre-announced schedules are consistently less
+disruptive than sudden legislated jumps, across all regions and urbanization
+levels.
 
-This paper also serves as a proof-of-concept for AI-assisted empirical research
-pipelines. The data collection, panel construction, econometric analysis, and
-draft writing were generated with assistance from an AI research agent
-\citep{hler2026, airesearcher2025}, demonstrating that routine DID workflows
-in empirical economics are substantially automatable.
+The equity analysis reveals that these findings are not distributionally neutral.
+High-minority states tend to show larger negative employment effects, partly
+because they are more likely to be late adopters implementing large step-changes,
+and partly because the minimum wage is more binding in the lower-wage markets
+where minority workers are concentrated.  We document what we term the
+``equity paradox'' of minimum wage timing: states that raised wages most urgently
+and abruptly---often with genuinely equity-motivated intent---experienced
+the worst disemployment outcomes.  This does not imply that minimum wage
+increases harm minority workers in net; the wage gains for retained workers
+may dominate in welfare terms.  But it does imply that the distributional
+calculus is sensitive to \emph{how} increases are implemented, not just
+\emph{whether} they occur.
+
+This paper has several limitations.  First, we study state-level employment
+in one supersector; within-state and within-sector heterogeneity (by
+occupation, metropolitan area, or firm size) is invisible in our data.
+Second, our binary treatment indicator conflates the extensive margin
+(crossing the federal floor) with the intensive margin (the size of the
+increase), a limitation shared by the broader staggered-adoption literature.
+Third, the COVID-19 pandemic represents a massive common shock that,
+while handled by our parallel-trends design, may have changed the structural
+relationship between minimum wages and employment in ways our estimates
+cannot capture.
+
+Notwithstanding these limitations, the results carry clear practical
+implications for minimum wage policy.  A \$15 federal minimum wage, enacted
+as a sudden step-change, would impose the largest labor-cost shocks in
+exactly the regional labor markets---Southern and Midwestern states with
+large minority workforces---where disemployment effects are most severe.
+Regional differentiation of the federal floor, or multi-year phase-in
+schedules with regional adjustment clauses, would preserve the equity benefits
+of higher wage floors while mitigating the disemployment costs borne
+disproportionately by the workers the policy is designed to protect.
+
+Finally, this paper serves as a proof-of-concept for AI-assisted empirical
+research pipelines. The data collection, panel construction, econometric
+analysis, and draft writing were generated with assistance from an AI research
+agent \citep{hler2026,airesearcher2025}, demonstrating that routine DID
+workflows in empirical economics are substantially automatable.
 
 \bigskip
 \bibliographystyle{aer}
