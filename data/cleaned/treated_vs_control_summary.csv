@@ -1,0 +1,5 @@
+,low_wage_emp,low_wage_emp,min_wage,min_wage,unemp_rate,unemp_rate
+,mean,std,mean,std,mean,std
+ever_treated,,,,,,
+False,204.67,218.91,7.32,0.32,4.92,2.23
+True,242.42,284.75,11.39,2.17,4.55,2.2
