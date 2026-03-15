@@ -1,0 +1,8 @@
+pandas>=2.0
+numpy>=1.26
+statsmodels>=0.14
+scipy>=1.11
+matplotlib>=3.7
+linearmodels>=5.3
+patsy>=0.5
+requests>=2.31

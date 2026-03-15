@@ -240,20 +240,12 @@ print("\n[5] Sensitivity to Pre-Period Length...")
 
 preperiod_results = []
 for pre_quarters in [2, 3, 4, 6, 8]:
-    # Only use the last pre_quarters quarters before treatment + all post
-    df_pp = df.copy()
-
-    def filter_event_window(grp, n_pre):
-        if grp["event_time"].isna().all():
-            return grp
-        return grp[
-            (grp["event_time"].isna()) |
-            ((grp["event_time"] >= -n_pre) & (grp["event_time"] <= 8))
-        ]
-
-    df_pp2 = df_pp.groupby("state", group_keys=False).apply(
-        lambda g: filter_event_window(g, pre_quarters)
-    )
+    # Filter: keep observations within event window or never-treated
+    df_pp2 = df[
+        (df["event_time"].isna()) |
+        ((df["event_time"] >= -pre_quarters) & (df["event_time"] <= 8)) |
+        (~df["ever_treated"])
+    ].copy()
     res = simple_twfe_att(df_pp2)
     preperiod_results.append({
         "pre_quarters": pre_quarters,
